@@ -14,12 +14,18 @@ credJson = json.load(credFile)
 
 openWeather_API_Key = credJson['openWeather_API_Key']
 accuWeather_API_Key = credJson['accuWeather_API_Key']
+
 # https://towardsdatascience.com/automate-email-sending-with-python-74128c7ca89a 
 bot_email = 'weatherbotsupreme@gmail.com'
 bot_password = credJson['bot_password']
 toList = credJson['toList']
 HOST_ADDRESS = 'smtp.gmail.com'
 HOST_PORT = 587
+
+# Open json file containing schedule of meteor showers
+# Source: https://www.almanac.com/content/meteor-shower-calendar 
+MeteorFile = open('MeteorShowerCalendar.json')
+MeteorJson = json.load(MeteorFile)
 
 # Primary Method to Update Current Location Data
 def location_update():
@@ -81,6 +87,35 @@ def MoonPhase():
     elif 21 <= moonphase < 28:
         status = "Last Quarter"
     return status
+
+def MeteorMsg():
+    Y = now_time()[0].year
+    M = now_time()[0].month
+    D = now_time()[0].day
+    datestring = str(M)+"/"+str(D)+"/"+str(Y)
+    
+    # datestring = "8/12/2022"
+    weather = weatherRun()
+    cloudcover = weather[2]
+    outmsg = ""
+    for i in range(12):
+        for j in range(3):
+            date = "DATE"
+            if j == 1:
+                date = "DATE__1"
+            if j == 2:
+                date = "DATE__2"
+            if datestring == MeteorJson[i][date]:
+                shower = MeteorJson[i]["SHOWER"]
+                bestView = MeteorJson[i]["BEST VIEWING"]
+                origin = MeteorJson[i]["POINT OF ORIGIN"]
+                metPerHr = MeteorJson[i]["NO. PER HOUR**"]
+                bigBoy = MeteorJson[i]["ASSOCIATED COMET"]
+                outmsg = "Meteor Shower Tonight\n\tShower:\t\t\t"+shower+"\n\tMeteors Per Hour:\t"+str(metPerHr)+"\n\tCommet to Watch for:\t"+bigBoy+"\n\tBest Time To View:\t"+bestView+"\n\tDirection of Shower:\t"+origin+"\n\tCloud Cover:\t"+str(cloudcover)+"%"
+    if outmsg is not None:
+        return(outmsg)
+    else:
+        return
 
 # Primary Weather Method
 def Weather():
@@ -145,11 +180,11 @@ def AuroraRun():
     NOAAkpindex = int(NOAAkpindex)
     # NOAAkpindex = 5
     outmsg = ""
-    if NOAAkpindex == 3:
+    if NOAAkpindex == 3 or cloud >= 75:
         outmsg = "LOW possibility of seeing the lights tonight\n\tGreatest expected KP (3hr): " + str(NOAAkpindex) +"\n\tCurrent Cloud Coverage: " + str(cloud) +"%\n\tCurrent Weather Conditions: "+str(cond)+"\n\tMoon Phase: "+str(moon)+"\n\tCurrent Temp: "+str(temp)+" degrees"+"\n\tWindchill: "+str(wc)+" degrees"+"\n\tCurrent wind speeds: "+str(windmph)+" MPH"
-    elif 3 < NOAAkpindex <= 4:
+    elif 3 < NOAAkpindex <= 4 or cloud >= 33:
         outmsg = "Possibility of seeing the lights tonight\n\tGreatest expected KP (3hr): " + str(NOAAkpindex) +"\n\tCurrent Cloud Coverage: " + str(cloud) +"%\n\tCurrent Weather Conditions: "+str(cond)+"\n\tMoon Phase: "+str(moon)+"\n\tCurrent Temp: "+str(temp)+" degrees"+"\n\tWindchill: "+str(wc)+" degrees"+"\n\tCurrent wind speeds: "+str(windmph)+" MPH"
-    elif NOAAkpindex > 4:
+    elif NOAAkpindex > 4 and cloud < 33:
         outmsg = "HIGH Possibility of seeing the lights tonight\n\tGreatest expected KP (3hr): " + str(NOAAkpindex) +"\n\tCurrent Cloud Coverage: " + str(cloud) +"%\n\tCurrent Weather Conditions: "+str(cond)+"\n\tMoon Phase: "+str(moon)+"\n\tCurrent Temp: "+str(temp)+" degrees"+"\n\tWindchill: "+str(wc)+" degrees"+"\n\tCurrent wind speeds: "+str(windmph)+" MPH"
     return [outmsg, cloud, moon, NOAAkpindex]
 
@@ -203,20 +238,10 @@ def AuroraMain():
     moon = AuroraCall[2]
     
     if cloud < 25:
-        if len(shaft) != 0:
-            if moon != "Full moon" or "Last Quarter":
-                outmsg = NorthernFuckingLights()
-                return outmsg
-            else:
-                return
-        elif int(now_time()) >= int(dusk_time()) and moon == "Full moon":
-            outmsg = "Slim chance for lights", "You probably won't see the lights tonight, but it should be a good night for skywatching!\n\n\tCurrent Cloud Coverage is: " + str(cloud)+"%\n\tCurrent moon phase: "+moon
-            return outmsg
-        elif int(now_time()) >= int(dusk_time()) and moon == "New Moon":
-            outmsg = "Slim chance for lights", "You probably won't see the lights tonight, but it should be a good night for skywatching!\n\n\tCurrent Cloud Coverage is: " + str(cloud)+"%\n\tCurrent moon phase: "+moon
-            return outmsg
+        if int(now_time()) >= int(dusk_time()) and moon == "Full moon" or "New Moon":
+            sendMail("Slim chance for lights", "You probably won't see the lights tonight, but it should be a good night for skywatching!\n\n\tCurrent Cloud Coverage is: " + str(cloud)+"%\n\tCurrently moon phase: "+moon+"\n\tCurrent KP: "+kp)
         else:
-            return 
+            return
     else:
         return
 
@@ -244,8 +269,9 @@ def GoodMorningVietnam():
     return
 
 def NorthernFuckingLights():
-    AuroraMsg = AuroraMain()
-
+    AuroraCall = AuroraRun()
+    AuroraMsg = AuroraCall[0]
+    
     sendList = [toList[0], toList[1], toList[2]]
 
     if len(AuroraMsg) != 0:
@@ -263,6 +289,15 @@ def WhiteShitFallingFromTheSky():
     else:
         return
 
+def SkyRocks():
+    MetCall = MeteorMsg()
+    if len(MetCall) != 0:
+        sendList = [toList[0], toList[1], toList[2]]
+        sendMail("Meteor Shower Alert", MetCall, sendList)
+        return
+    else:
+        return
+
 # # Looping to check times and run secondart calls
 while True:
     hour = now_time()[0].strftime("%H")
@@ -276,6 +311,7 @@ while True:
         elif hour == "21":
             NorthernFuckingLights()
             WhiteShitFallingFromTheSky()
+            SkyRocks()
         # 00:00 (midnight)
         elif hour == "00":
             NorthernFuckingLights()
@@ -285,8 +321,9 @@ while True:
 
 
 
-# Calls for Testing
+# # Calls for Testing
 
 # GoodMorningVietnam()
 # NorthernFuckingLights()
 # WhiteShitFallingFromTheSky()
+# SkyRocks()
