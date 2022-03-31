@@ -11,6 +11,7 @@ Full project functionality includes:
  - The ability to notify someone if there is a good viewing of a full moon/night sky.  
  - The ability to have a current weather condition report sent. (currently configured with custom "Good Morning" message)  
  - The ability to notify you if there is snow, and send a corresponding 12-hour forecast.  
+ - The ability to notify you if today is an optimal day to view a metoer shower
 
 ## **Required Libraries**  
 ```pip install -r requirements.txt```
