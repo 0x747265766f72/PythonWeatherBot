@@ -1,0 +1,122 @@
+[
+  {
+    "DATE": "1/3/2022",
+    "DATE__1": "1/4/2022",
+    "DATE__2": "",
+    "SHOWER": "Quadrantid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "N",
+    "NO. PER HOUR**": 25,
+    "ASSOCIATED COMET": "—"
+  },
+  {
+    "DATE": "4/21/2022",
+    "DATE__1": "4/22/2022",
+    "DATE__2": "",
+    "SHOWER": "Lyrid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 10,
+    "ASSOCIATED COMET": "Thatcher"
+  },
+  {
+    "DATE": "5/4/2022",
+    "DATE__1": "5/5/2022",
+    "DATE__2": "",
+    "SHOWER": "Eta Aquarid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "SE",
+    "NO. PER HOUR**": 10,
+    "ASSOCIATED COMET": "Halley"
+  },
+  {
+    "DATE": "6/28/2022",
+    "DATE__1": "6/29/2022",
+    "DATE__2": "",
+    "SHOWER": "Delta Aquarid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 10,
+    "ASSOCIATED COMET": "—"
+  },
+  {
+    "DATE": "8/11/2022",
+    "DATE__1": "8/12/2022",
+    "DATE__2": "",
+    "SHOWER": "Perseid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "NE",
+    "NO. PER HOUR**": 50,
+    "ASSOCIATED COMET": "Swift-Tuttle"
+  },
+  {
+    "DATE": "10/8/2022",
+    "DATE__1": "10/9/2022",
+    "DATE__2": "10/10/2022",
+    "SHOWER": "Draconid",
+    "BEST VIEWING": "Late evening",
+    "POINT OF ORIGIN": "NW",
+    "NO. PER HOUR**": 6,
+    "ASSOCIATED COMET": "Giacobini-Zinner"
+  },
+  {
+    "DATE": "10/20/2022",
+    "DATE__1": "10/21/2022",
+    "DATE__2": "",
+    "SHOWER": "Orionid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 15,
+    "ASSOCIATED COMET": "Halley"
+  },
+  {
+    "DATE": "11/11/2022",
+    "DATE__1": "11/12/2022",
+    "DATE__2": "",
+    "SHOWER": "Northern Taurid",
+    "BEST VIEWING": "Late evening",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 3,
+    "ASSOCIATED COMET": "Encke"
+  },
+  {
+    "DATE": "11/16/2022",
+    "DATE__1": "11/17/2022",
+    "DATE__2": "",
+    "SHOWER": "Leonid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 10,
+    "ASSOCIATED COMET": "Tempel-Tuttle"
+  },
+  {
+    "DATE": "11/25/2022",
+    "DATE__1": "11/26/2022",
+    "DATE__2": "11/27/2022",
+    "SHOWER": "Andromedid",
+    "BEST VIEWING": "Late evening",
+    "POINT OF ORIGIN": "S",
+    "NO. PER HOUR**": 5,
+    "ASSOCIATED COMET": "Biela"
+  },
+  {
+    "DATE": "12/13/2022",
+    "DATE__1": "12/14/2022",
+    "DATE__2": "",
+    "SHOWER": "Geminid",
+    "BEST VIEWING": "All night",
+    "POINT OF ORIGIN": "NE",
+    "NO. PER HOUR**": 75,
+    "ASSOCIATED COMET": "—"
+  },
+  {
+    "DATE": "12/21/2022",
+    "DATE__1": "12/22/2022",
+    "DATE__2": "",
+    "SHOWER": "Ursid",
+    "BEST VIEWING": "Predawn",
+    "POINT OF ORIGIN": "N",
+    "NO. PER HOUR**": 5,
+    "ASSOCIATED COMET": "Tuttle"
+  }
+]

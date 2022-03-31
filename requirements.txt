@@ -1,0 +1,17 @@
+astral==2.2
+backports.statistics==0.1.0
+Cython==0.29.28
+dl==0.1.0
+geocoder==1.38.1
+geopy==2.2.0
+ipaddr==2.2.0
+keyring==23.5.0
+mypy_extensions==0.4.3
+numpy==1.21.4
+ordereddict==1.1
+pytz==2021.3
+requests==2.26.0
+suntime==1.2.5
+timezonefinder==5.2.0
+typing_extensions==4.1.1
+wincertstore==0.2.1
