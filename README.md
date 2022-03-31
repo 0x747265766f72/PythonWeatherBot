@@ -13,8 +13,7 @@ Full project functionality includes:
  - The ability to notify you if there is snow, and send a corresponding 12-hour forecast.  
 
 ## **Required Libraries**  
-```requests, json, geocoder, astral, geopy, suntime, time, math, re, smtplib, pytz, datetime, timezonefinder, email```
-Or, you can run: ```pip install -r requirements.txt```
+```pip install -r requirements.txt```
 
 ## **Credential Setup**
 
