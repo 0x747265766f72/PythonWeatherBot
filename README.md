@@ -14,6 +14,7 @@ Full project functionality includes:
 
 ## **Required Libraries**  
 ```requests, json, geocoder, astral, geopy, suntime, time, math, re, smtplib, pytz, datetime, timezonefinder, email```
+Or, you can run: ```pip install -r requirements.txt```
 
 ## **Credential Setup**
 
